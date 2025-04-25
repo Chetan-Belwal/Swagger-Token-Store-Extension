@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swagger Token Store</title>
+    <style>
+      body {
+        width: 420px;
+        height: 400px;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 10px;
+      }
+      .token-list-items,
+      .token-list-items li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .token-list-items li {
+        padding: 10px;
+        border-bottom: 2px solid green;
+        display: flex;
+        justify-content: space-between;
+      }
+      .token-list-items li:hover {
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .token-list-items div span {
+        margin: 3px;
+        font-size: 1em;
+      }
+      header {
+        height: 55px;
+        width: 100%;
+        display: flex;
+        justify-content: left;
+        padding-left: 7px;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+      }
+      .new-token {
+        display: none;
+        padding-top: 10px;
+      }
+      .new-token {
+        padding: 16px;
+      }
+      .new-token input,
+      .new-token label {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="storage/swagger-svgrepo-com.svg"
+        height="37px"
+        width="38px"
+        style="padding-top: 10px"
+      />
+      <span><h1>Swagger Token Store</h1></span>
+      <span>
+        <div style="padding-left: 135%">
+          <button
+            class="store-token"
+            style="
+              appearance: none;
+              border: none;
+              cursor: pointer;
+              background-color: inherit;
+            "
+          >
+            <img
+              src="storage/icons8-plus.svg"
+              height="35px"
+              width="40px"
+              style="padding-top: 10px"
+            />
+          </button></div
+      ></span>
+    </header>
+
+    <div class="new-token">
+      <div>
+        <label><b>Description</b></label>
+        <input type="text" />
+      </div>
+      <div>
+        <label><b>Token</b></label>
+        <textarea placeholder="Enter Your Token"></textarea>
+      </div>
+
+      <br />
+      <button
+        style="
+          background-color: #3b71ca;
+          border-radius: 3px;
+          border: 2px solid rgb(21, 20, 20);
+          color: white;
+          cursor: pointer;
+        "
+        id="save-btn"
+      >
+        save
+      </button>
+      <button
+        style="
+          background-color: #3b71ca;
+          border-radius: 3px;
+          border: 2px solid rgb(21, 20, 20);
+          color: white;
+          cursor: pointer;
+        "
+        id="save-set-btn"
+      >
+        save & set
+      </button>
+    </div>
+    <div style="padding-top: 10px">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 2.5px solid black;
+          padding: 10px;
+          padding-right: 20px;
+        "
+      >
+        <b>Description</b><span><b>Token</b> </span> <span> <b>Action</b></span>
+      </div>
+      <ul class="token-list-items">
+        <li>
+          local-token <span style="overflow: scroll"> token2332njdhdf</span>
+          <div>
+            <span
+              ><button
+                id="myButton"
+                type="submit"
+                style="
+                  background-color: #14a44d;
+                  border-radius: 3px;
+                  border: 2px solid rgb(21, 20, 20);
+                  color: white;
+                  cursor: pointer;
+                "
+              >
+                Set
+              </button> </span
+            ><span
+              ><button
+                style="
+                  background-color: #dc4c64;
+                  border-radius: 3px;
+                  border: 2px solid rgb(45, 44, 44);
+                  color: white;
+                  cursor: pointer;
+                "
+              >
+                Del
+              </button></span
+            >
+          </div>
+        </li>
+
+        <li>
+          production-token <span> token2332njdhdf</span>
+          <div><span> Set</span><span>Del</span></div>
+        </li>
+        <li>
+          local-token <span> token2332njdhdf</span>
+          <div><span> Set</span><span>Delete</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <div>
+    <form>
+    <input type="text" id="token"> 
+  <button id="myButton" type="submit">Set</button>
+    </form> -->
+    <script src="index.js"></script>
+  </body>
+</html>

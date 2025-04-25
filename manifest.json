@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Swagger Token Store",
+  "description": "This is Swagger Token Store,a productivity extension which saves AuthBearerToken and sets it with a click making it hustle free",
+  "version": "1.0.0",
+  "author": "Chetan Belwal",
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./auto-load-token.js"]
+    }
+  ],
+  "permissions": ["scripting", "activeTab", "storage", "tabs"],
+  "host_permissions": ["http://*/*", "https://*/*", "localhost:*"]
+}
