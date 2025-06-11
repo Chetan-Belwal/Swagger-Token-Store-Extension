@@ -177,9 +177,9 @@ class TokenManager {
                   </div>
                   <div class="token-actions">
                       ${!isEditing ? `
-                          <button class="action-btn btn-success set-btn" title="Set as active">🚀</button>
-                          <button class="action-btn btn-primary copy-btn" title="Copy token">📋</button>
-                          <button class="action-btn btn-warning edit-btn-main" title="Edit token">✏️</button>
+                          <button class="action-btn btn-success set-btn" title="Set as active">✅</button>
+                          <button class="action-btn btn-info copy-btn" title="Copy token">📋</button>
+                          <button class="action-btn btn-warning edit-btn-main" title="Edit token">📝</button>
                           <button class="action-btn btn-danger del-btn" title="Delete token">🗑️</button>
                       ` : `
                           <div style="font-size: 12px; color: #666;">Editing...</div>
