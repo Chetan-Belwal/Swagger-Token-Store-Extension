@@ -91,43 +91,53 @@ class TokenManager {
               target: { tabId: tab.id },
               func: async (token, des) => {
                 if (document.body.getElementsByClassName("btn authorize locked")[0]) {
-                  await document.body
-                    .getElementsByClassName("btn authorize locked")[0]
-                    .click();
-                  await document.body
-                    .getElementsByClassName("btn modal-btn auth button")[0]
-                    .click();
-                }
-                const title = document.body.getElementsByClassName("title")[0];
+                    await document.body
+                      .getElementsByClassName("btn authorize locked")[0]
+                      .click();
+                    await document.body
+                      .getElementsByClassName("btn modal-btn auth button")[0]
+                      .click();
+                  }
+                const title = document.querySelector(".title");
+            
                 const userProvidedTitle = title.innerHTML.split("🚀")[0];
-                title.innerHTML = "";
-                title.innerHTML = `${userProvidedTitle}  🚀🌟 STS Extension Active 🌟🚀 current token: ${des} 🌟🚀`;
-          
-                //perfom click action on swagger authorization button
-                await document.body
-                  .getElementsByClassName("btn authorize unlocked")[0]
-                  .click();
-          
-                //selecting input area(The area we input our token)
-                const inputField = document.body.querySelector(
-                  'input[aria-label="auth-bearer-value"]'
-                );
-          
+                title.innerHTML = `${userProvidedTitle} 🚀🌟 STS Extension Active 🌟🚀 current token(Last used): ${des} 🌟🚀`;
+            
+                // Find and click authorize button
+                const authButton = document.querySelector(".btn.authorize.unlocked") || 
+                                  document.querySelector(".btn.authorize");
+            
+                authButton.click();
+
+                // This part really need a small delay
+               await new Promise(resolve => setTimeout(resolve, 30));
+
+                const inputField = document.querySelector('input[aria-label="auth-bearer-value"]') ||
+                                  document.querySelector('input[placeholder*="Bearer"]') ||
+                                  document.querySelector('.auth-container input[type="text"]');
+            
+            
                 inputField.value = token.trim();
-          
-                //fire the input event
-                const customInputEvent = new Event("input", { bubbles: true });
-                inputField.dispatchEvent(customInputEvent);
-          
-                //perform click action on authorize button
-                await document.body
-                  .getElementsByClassName("btn modal-btn auth authorize button")[0]
-                  .click();
-          
-                //perform click action on the close button
-                await document.body
-                  .getElementsByClassName("btn modal-btn auth btn-done button")[0]
-                  .click();
+                inputField.dispatchEvent(new Event("input", { bubbles: true }));
+                inputField.dispatchEvent(new Event("change", { bubbles: true }));
+            
+            
+                const authorizeBtn = document.querySelector(".btn.modal-btn.auth.authorize.button") ||
+                                    document.querySelector(".authorize-btn") ||
+                                    document.querySelector('button[type="submit"]');
+            
+              
+                  authorizeBtn.click();
+                  
+                  
+                  const closeBtn = document.querySelector(".btn.modal-btn.auth.btn-done.button") ||
+                                  document.querySelector(".modal-btn.btn-done") ||
+                                  document.querySelector('.close-modal');
+                  
+                  
+                    closeBtn.click();
+                  
+                
               },
               args: [token, description]
           });
@@ -451,3 +461,4 @@ class TokenManager {
 document.addEventListener('DOMContentLoaded', () => {
   new TokenManager();
 });
+

@@ -47,13 +47,9 @@ const setLastUsedToken = async (token, description) => {
     await waitForSwaggerUI();
     
     // Additional small delay to ensure everything is rendered
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 100));
     
     const title = document.querySelector(".title");
-    if (!title) {
-      console.warn("Swagger title not found");
-      return;
-    }
 
     // Update title
     const userProvidedTitle = title.innerHTML.split("🚀")[0];
@@ -62,26 +58,17 @@ const setLastUsedToken = async (token, description) => {
     // Find and click authorize button
     const authButton = document.querySelector(".btn.authorize.unlocked") || 
                       document.querySelector(".btn.authorize");
-    
-    if (!authButton) {
-      console.warn("Authorization button not found");
-      return;
-    }
 
     authButton.click();
     
     // Wait for modal to open
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 30));
 
     // Find and fill token input
     const inputField = document.querySelector('input[aria-label="auth-bearer-value"]') ||
                       document.querySelector('input[placeholder*="Bearer"]') ||
                       document.querySelector('.auth-container input[type="text"]');
 
-    if (!inputField) {
-      console.warn("Token input field not found");
-      return;
-    }
 
     // Set token value
     inputField.value = token.trim();
@@ -89,26 +76,22 @@ const setLastUsedToken = async (token, description) => {
     inputField.dispatchEvent(new Event("change", { bubbles: true }));
 
     // Wait a bit then click authorize
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, 20));
 
     const authorizeBtn = document.querySelector(".btn.modal-btn.auth.authorize.button") ||
                         document.querySelector(".authorize-btn") ||
                         document.querySelector('button[type="submit"]');
 
-    if (authorizeBtn) {
       authorizeBtn.click();
       
       // Wait and then close modal
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise(resolve => setTimeout(resolve, 35));
       
       const closeBtn = document.querySelector(".btn.modal-btn.auth.btn-done.button") ||
                       document.querySelector(".modal-btn.btn-done") ||
                       document.querySelector('.close-modal');
       
-      if (closeBtn) {
         closeBtn.click();
-      }
-    }
 
     console.log(`Token set successfully: ${description}`);
     

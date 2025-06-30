@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Swagger Token Store",
-  "version": "1.0.0",
-  "description": "A productivity Chrome extension that manages and injects Authorization Bearer tokens into Swagger UI or any API tool with a single click—simplifying authentication workflows.",
+  "version": "1.0.2",
+  "description": "A productivity extension that manages and injects AuthBearer tokens into SwaggerUI with a single click—simplifying authentication.",
   "author": "Chetan Belwal",
 
   "background": {
@@ -28,9 +28,7 @@
     "128": "storage/icons/icon128.png"
   },
 
-  "permissions": ["scripting", "activeTab", "storage", "tabs"],
-
-  "host_permissions": ["http://*/*", "https://*/*", "localhost:*"],
+  "permissions": ["scripting", "activeTab", "storage"],
 
   "content_scripts": [
     {
